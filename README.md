@@ -1,146 +1,206 @@
 # AI-Smart-Email-Classifier
-🚀 AI-Powered Smart Email Classifier — Project Progress (Current Stage)
+🚀 AI-Powered Smart Email Classifier — Project Progress
 
-This repository contains the initial completed foundation of the AI Email Classification System.
-So far, the focus has been on project setup, dataset preparation, preprocessing, and dataset organization.
+This repository contains the **core implementation** of an AI-powered email classification system for enterprises.  
+The project focuses on **email preprocessing, dataset preparation, model training, and evaluation**.
 
-This README describes exactly what is completed right now—without mentioning any automatic loading, automatic labeling, or email generation features.
+This README reflects **what has been implemented so far**, along with clearly defined next steps.
 
-✅ Completed Work So Far
-✔ 1. Project Folder Structure Setup
+---
 
-A clean machine-learning project layout has been created:
+## ✅ Completed Work So Far
 
+### ✔ 1. Project Folder Structure Setup
+
+A clean, scalable machine-learning project structure has been created:
+
+```text
 AI-Smart-Email-Classifier/
 │
 ├── data/
-│   ├── raw/          # Raw datasets
-│   ├── interim/      # Cleaned data
-│   ├── processed/    # Labeled/merged data
-│   └── splits/       # Train/Test/Val files
+│ ├── raw/ # Raw datasets
+│ ├── interim/ # Cleaned emails
+│ ├── processed/ # Labeled & merged datasets
+│ └── splits/ # Train/Test/Validation splits
 │
 ├── src/
-│   └── preprocessing/
-│       ├── cleaner.py
-│       ├── generate_cleaned_csv.py
-│       ├── label_categories.py         (manual labeling if needed)
-│       ├── label_urgency.py            (manual labeling if needed)
-│       └── merge_datasets.py
+│ ├── preprocessing/
+│ │ ├── cleaner.py
+│ │ ├── generate_cleaned_csv.py
+│ │ ├── label_categories.py
+│ │ ├── label_urgency.py
+│ │ ├── merge_datasets.py
+│ │ └── split_dataset.py
+│ │
+│ └── models/
+│ ├── vectorizer.py
+│ ├── train_logistic_regression.py
+│ ├── train_naive_bayes.py
+│ ├── train_distilbert.py
+│ ├── evaluate_distilbert.py
+│ └── label_mapping.py
+│
+├── models/
+│ └── category/
+│ ├── logistic_regression.pkl
+│ ├── naive_bayes.pkl
+│ └── distilbert/
 │
 └── README.md
+```
 
-✔ 2. Email Cleaning Pipeline Implemented
+---
 
-A preprocessing script (cleaner.py) has been developed that:
+### ✔ 2. Email Cleaning Pipeline Implemented
 
-Removes HTML tags
+The preprocessing pipeline performs:
 
-Removes URLs and email addresses
+- Removal of HTML tags  
+- Removal of URLs and email addresses  
+- Signature removal (rule-based)  
+- Lowercasing  
+- Removal of special characters  
+- Whitespace normalization  
 
-Removes signatures (rule-based)
-
-Converts text to lowercase
-
-Removes unwanted characters
-
-Normalizes spacing
-
-Cleaned output is saved to:
-
+Cleaned output is saved as:
 data/interim/cleaned_emails.csv
 
-✔ 3. Manual Category & Urgency Labeling Scripts Added
+---
 
-Scripts exist to allow manual labeling of emails for:
+### ✔ 3. Manual Category & Urgency Labeling Support
 
-⭐ Category Labeling
+Scripts are available for **manual dataset labeling**:
 
-(complaint / request / feedback / spam)
+#### Category Labels
+- complaint  
+- request  
+- feedback  
+- spam  
 
-⭐ Urgency Labeling
+#### Urgency Labels
+- high  
+- medium  
+- low  
 
-(high / medium / low)
-
-These scripts can be run as needed to create:
-
+Generated files:
 data/processed/labeled_categories.csv
 data/processed/labeled_urgency.csv
 
-✔ 4. Dataset Merge Script Implemented
 
-A merging script combines:
+---
 
-Cleaned emails
+### ✔ 4. Dataset Merging & Splitting
 
-Category labels
+A merged dataset is created containing:
 
-Urgency labels
+- Raw email text  
+- Cleaned email text  
+- Category labels  
+- Urgency labels  
 
-Raw email text
-
-Into a final consolidated dataset:
-
+Final dataset:
 data/processed/final_dataset.csv
 
-✔ 5. Train/Test/Validation Split Script Added
 
-A script has been created to split the final dataset into:
-
+Train/Test/Validation splits:
 data/splits/train.csv
 data/splits/test.csv
 data/splits/val.csv
 
 
-This prepares the data for the upcoming model training stage.
+---
 
-📦 Files Successfully Generated So Far
-File	Description
-cleaned_emails.csv	Preprocessed emails ready for labeling
-labeled_categories.csv	Category labels (manually created)
-labeled_urgency.csv	Urgency labels (manually created)
-final_dataset.csv	Combined dataset
-train.csv	Training data split
-test.csv	Test data split
-val.csv	Validation data split
-🧠 What’s Coming Next (Not Done Yet)
+## 🤖 Model Development (Implemented)
 
-These tasks are NOT yet implemented:
+### ✔ 5. Baseline Email Categorization Models
 
-❌ Model training (Category + Urgency)
-❌ Transformers / BERT fine-tuning
-❌ API development (FastAPI)
-❌ Dashboard (Streamlit)
-❌ Deployment (Docker / Cloud)
+Two baseline machine learning models were trained using **TF-IDF features**:
 
-These will be added in the next stages of the project.
+- Logistic Regression  
+- Naive Bayes  
 
-▶️ How to Run the Completed Parts
-1. Clean the emails
+These models serve as performance benchmarks for transformer-based models.
+
+**Baseline Performance (Test Set):**
+- Accuracy ≈ 92%
+- Macro F1-score ≈ 92%
+
+Saved models:
+models/category/logistic_regression.pkl
+models/category/naive_bayes.pkl
+
+
+---
+
+### ✔ 6. Transformer-Based Email Categorization (DistilBERT)
+
+A **DistilBERT** model was fine-tuned for multi-class email categorization.
+
+- Training performed for 1 epoch due to computational constraints
+- Evaluated on a held-out test set
+
+**DistilBERT Test Results:**
+- Accuracy: **94.17%**
+- Macro F1-score: **94.53%**
+
+Class-wise performance showed strong results across all categories, with particularly high precision for spam detection and high recall for request classification.
+
+Saved model:
+models/category/distilbert/
+
+
+---
+
+## 📊 Files Generated So Far
+
+| File | Description |
+|-----|-------------|
+| cleaned_emails.csv | Preprocessed email text |
+| labeled_categories.csv | Category labels |
+| labeled_urgency.csv | Urgency labels |
+| final_dataset.csv | Combined dataset |
+| train.csv | Training split |
+| test.csv | Test split |
+| val.csv | Validation split |
+| logistic_regression.pkl | Baseline model |
+| naive_bayes.pkl | Baseline model |
+| distilbert/ | Fine-tuned transformer model |
+
+---
+
+## ▶️ How to Run the Implemented Pipeline
+
+### 1. Clean emails
+```bash
 python src/preprocessing/generate_cleaned_csv.py
+```
 
-2. Manually label categories
+### 2. Label categories
+```bash
 python src/preprocessing/label_categories.py
-
-3. Manually label urgency
+```
+### 3. Label urgency
+```bash
 python src/preprocessing/label_urgency.py
-
-4. Merge everything
+```
+### 4. Merge datasets
+```bash
 python src/preprocessing/merge_datasets.py
-
-5. Split into train/test/val
+```
+### 5. Split data
+```bash
 python src/preprocessing/split_dataset.py
-
-
-📌 What’s Next (Not Done Yet)
-
-These parts are not implemented yet but will be added later:
-
-Category classification model training
-
-Urgency classification model training
-
-API development (FastAPI)
-
-Dashboard (Streamlit)
-
-Deployment (Docker / Cloud)
+```
+### 6. Train baseline models
+```bash
+python src/models/train_logistic_regression.py
+python src/models/train_naive_bayes.py
+```
+### 7. Train DistilBERT
+```bash
+python src/models/train_distilbert.py
+```
+### 8. Evaluate DistilBERT
+```bash
+python src/models/evaluate_distilbert.py
+```
