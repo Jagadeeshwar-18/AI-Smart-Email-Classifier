@@ -1,0 +1,21 @@
+data/raw/complaints.csv
+data/raw/emailclass.csv
+
+# Models (optional)
+models/category/distilbert/
+# Python
+__pycache__/
+*.pyc
+*.pyo
+# Virtual environment
+.venv/
+
+# Data
+data/
+
+
+
+# Python cache
+__pycache__/
+*.pyc
+
