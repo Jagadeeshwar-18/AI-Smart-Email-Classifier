@@ -1,206 +1,198 @@
 # AI-Smart-Email-Classifier
-🚀 AI-Powered Smart Email Classifier — Project Progress
-
-This repository contains the **core implementation** of an AI-powered email classification system for enterprises.  
-The project focuses on **email preprocessing, dataset preparation, model training, and evaluation**.
-
-This README reflects **what has been implemented so far**, along with clearly defined next steps.
 
 ---
 
-## ✅ Completed Work So Far
+## 🚀 Project Title
+- **AI-Powered Smart Email Classifier for Enterprises**
 
-### ✔ 1. Project Folder Structure Setup
+---
 
-A clean, scalable machine-learning project structure has been created:
+## 📌 Problem Statement
+- Enterprises receive large volumes of emails daily
+- Manual email triaging is slow and inefficient
+- Critical emails may be delayed
+- Automation is required for:
+  - Email categorization
+  - Urgency prioritization
 
+---
+
+## 🎯 Project Objectives
+- Automatically classify emails into categories
+- Detect urgency levels for prioritization
+- Reduce manual workload
+- Improve enterprise response times
+
+---
+
+## 🧠 Core Capabilities
+- Natural Language Processing (NLP)
+- Machine Learning & Transformer Models
+- Hybrid Rule + ML Decision Systems
+- Scalable enterprise-ready design
+
+---
+
+## 🏗️ System Architecture
 ```text
-AI-Smart-Email-Classifier/
-│
-├── data/
-│ ├── raw/ # Raw datasets
-│ ├── interim/ # Cleaned emails
-│ ├── processed/ # Labeled & merged datasets
-│ └── splits/ # Train/Test/Validation splits
-│
-├── src/
-│ ├── preprocessing/
-│ │ ├── cleaner.py
-│ │ ├── generate_cleaned_csv.py
-│ │ ├── label_categories.py
-│ │ ├── label_urgency.py
-│ │ ├── merge_datasets.py
-│ │ └── split_dataset.py
-│ │
-│ └── models/
-│ ├── vectorizer.py
-│ ├── train_logistic_regression.py
-│ ├── train_naive_bayes.py
-│ ├── train_distilbert.py
-│ ├── evaluate_distilbert.py
-│ └── label_mapping.py
-│
-├── models/
-│ └── category/
-│ ├── logistic_regression.pkl
-│ ├── naive_bayes.pkl
-│ └── distilbert/
-│
-└── README.md
+Raw Emails
+  ↓
+Preprocessing
+  ↓
+Email Categorization
+  ↓
+Urgency Detection
+  ↓
+Final Output
+(Category + Urgency)
 ```
 
 ---
 
-### ✔ 2. Email Cleaning Pipeline Implemented
+## ✅ Implemented Milestones
 
-The preprocessing pipeline performs:
+### ✔ Milestone 1: Data Preparation & Preprocessing
 
-- Removal of HTML tags  
-- Removal of URLs and email addresses  
-- Signature removal (rule-based)  
-- Lowercasing  
-- Removal of special characters  
-- Whitespace normalization  
-
-Cleaned output is saved as:
-data/interim/cleaned_emails.csv
+- Email cleaning pipeline (HTML, URLs, signatures removed)
+- Manual labeling support for category and urgency
+- Dataset merging and train/test/validation splits
 
 ---
 
-### ✔ 3. Manual Category & Urgency Labeling Support
+### ✔ Milestone 2: Email Categorization Engine
 
-Scripts are available for **manual dataset labeling**:
+#### Baseline Models
+- Logistic Regression (TF-IDF)
+- Naive Bayes (TF-IDF)
 
-#### Category Labels
-- complaint  
-- request  
-- feedback  
-- spam  
+**Baseline Performance**
+- Accuracy: ~92%
+- Macro F1-score: ~92%
 
-#### Urgency Labels
-- high  
-- medium  
-- low  
+#### Transformer-Based Model
+- Fine-tuned **DistilBERT** for multi-class email categorization
 
-Generated files:
-data/processed/labeled_categories.csv
-data/processed/labeled_urgency.csv
-
-
----
-
-### ✔ 4. Dataset Merging & Splitting
-
-A merged dataset is created containing:
-
-- Raw email text  
-- Cleaned email text  
-- Category labels  
-- Urgency labels  
-
-Final dataset:
-data/processed/final_dataset.csv
-
-
-Train/Test/Validation splits:
-data/splits/train.csv
-data/splits/test.csv
-data/splits/val.csv
-
-
----
-
-## 🤖 Model Development (Implemented)
-
-### ✔ 5. Baseline Email Categorization Models
-
-Two baseline machine learning models were trained using **TF-IDF features**:
-
-- Logistic Regression  
-- Naive Bayes  
-
-These models serve as performance benchmarks for transformer-based models.
-
-**Baseline Performance (Test Set):**
-- Accuracy ≈ 92%
-- Macro F1-score ≈ 92%
-
-Saved models:
-models/category/logistic_regression.pkl
-models/category/naive_bayes.pkl
-
-
----
-
-### ✔ 6. Transformer-Based Email Categorization (DistilBERT)
-
-A **DistilBERT** model was fine-tuned for multi-class email categorization.
-
-- Training performed for 1 epoch due to computational constraints
-- Evaluated on a held-out test set
-
-**DistilBERT Test Results:**
+**DistilBERT Test Results**
 - Accuracy: **94.17%**
 - Macro F1-score: **94.53%**
 
-Class-wise performance showed strong results across all categories, with particularly high precision for spam detection and high recall for request classification.
+---
 
-Saved model:
-models/category/distilbert/
+### ✔ Milestone 3: Urgency Detection Module
 
+A hybrid urgency detection system was implemented.
+
+#### Rule-Based Detection
+- Captures explicit urgency signals (e.g., *ASAP*, *system down*, *urgent*)
+
+#### ML-Based Detection
+- Logistic Regression with TF-IDF features
+- Predicts: **High / Medium / Low**
+
+**Urgency Model Performance**
+- Accuracy: **95%**
+- Weighted F1-score: **0.95**
+- Macro F1-score: **0.91**
+
+#### Hybrid Decision Logic
+- Rule-based **HIGH** urgency overrides ML predictions
+- ML handles nuanced cases
 
 ---
 
-## 📊 Files Generated So Far
+## 📊 Results Summary
 
-| File | Description |
-|-----|-------------|
-| cleaned_emails.csv | Preprocessed email text |
-| labeled_categories.csv | Category labels |
-| labeled_urgency.csv | Urgency labels |
-| final_dataset.csv | Combined dataset |
-| train.csv | Training split |
-| test.csv | Test split |
-| val.csv | Validation split |
-| logistic_regression.pkl | Baseline model |
-| naive_bayes.pkl | Baseline model |
-| distilbert/ | Fine-tuned transformer model |
+| Task                  | Model                  | Accuracy | Macro F1 |
+|-----------------------|------------------------|----------|----------|
+| Email Categorization  | Logistic Regression    | ~92%     | ~92%     |
+| Email Categorization  | DistilBERT             | 94.17%   | 94.53%   |
+| Urgency Detection     | Hybrid (Rules + ML)    | 95%      | 0.91     |
 
 ---
 
-## ▶️ How to Run the Implemented Pipeline
+## 📁 Project Structure
+```text
+AI-Smart-Email-Classifier:
+  data:
+    raw:
+    interim:
+    processed:
+    splits:
+  src:
+    preprocessing:
+      cleaner.py
+      generate_cleaned_csv.py
+      label_categories.py
+      label_urgency.py
+      merge_datasets.py
+      split_dataset.py
+    models:
+      vectorizer.py
+      label_mapping.py
+      train_logistic_regression.py
+      train_naive_bayes.py
+      train_distilbert.py
+      evaluate_distilbert.py
+      train_urgency_model.py
+      urgency_rules.py
+      hybrid_urgency.py
+  models:
+    category:
+    urgency:
+  README.md
+  .gitignore
+```
 
-### 1. Clean emails
+> **Note:** Large datasets and trained models are excluded from version control.
+
+---
+
+## ▶️ How to Run
+
+
+# Preprocess emails
 ```bash
 python src/preprocessing/generate_cleaned_csv.py
 ```
-
-### 2. Label categories
-```bash
-python src/preprocessing/label_categories.py
-```
-### 3. Label urgency
-```bash
-python src/preprocessing/label_urgency.py
-```
-### 4. Merge datasets
-```bash
-python src/preprocessing/merge_datasets.py
-```
-### 5. Split data
+# Split dataset
 ```bash
 python src/preprocessing/split_dataset.py
 ```
-### 6. Train baseline models
+# Train category models
 ```bash
 python src/models/train_logistic_regression.py
-python src/models/train_naive_bayes.py
-```
-### 7. Train DistilBERT
-```bash
 python src/models/train_distilbert.py
 ```
-### 8. Evaluate DistilBERT
+# Train urgency model
 ```bash
-python src/models/evaluate_distilbert.py
+python src/models/train_urgency_model.py
 ```
+## 🧪 Hybrid Urgency Logic
+- Rule-based **HIGH** urgency overrides ML prediction
+- ML model handles remaining cases
+- Ensures high precision for critical emails
+
+---
+
+## 🚧 Excluded from Version Control
+- Raw datasets
+- Processed datasets
+- Trained models
+- Virtual environments
+
+---
+
+## 🚀 Future Enhancements
+- FastAPI backend
+- Streamlit dashboard
+- Docker-based deployment
+- Cloud hosting (AWS / Azure / GCP)
+
+---
+
+## 🎯 Project Status
+- ✔ Data pipeline completed
+- ✔ Email categorization completed
+- ✔ Urgency detection completed
+- ✔ Models evaluated and validated
+- ✔ Ready for integration & deployment
