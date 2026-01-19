@@ -193,7 +193,7 @@ python src/models/train_urgency_model.py
 ---
 
 ### 🌐 Deployed Application URL
-- 🔗 Deployed URL: Add your deployed application link here (Mandatory for evaluation)
+- 🔗 Deployed URL: (https://ai-smart-email-classifier-vjf5o9fzr4vt4j7mekchhr.streamlit.app/)
 ---
 ### 🚀 Future Enhancements
 - FastAPI backend integration
