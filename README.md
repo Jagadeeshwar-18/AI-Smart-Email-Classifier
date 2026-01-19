@@ -1,62 +1,59 @@
 # AI-Smart-Email-Classifier
 
----
-
 ## 🚀 Project Title
-- **AI-Powered Smart Email Classifier for Enterprises**
+**AI-Powered Smart Email Classifier for Enterprises**
 
 ---
 
 ## 📌 Problem Statement
-- Enterprises receive large volumes of emails daily
-- Manual email triaging is slow and inefficient
-- Critical emails may be delayed
-- Automation is required for:
-  - Email categorization
-  - Urgency prioritization
+Enterprises receive a massive volume of emails every day. Manual email triaging is:
+- Time-consuming
+- Error-prone
+- Inefficient for prioritizing critical communications
+
+This project addresses the need for **automated email classification and urgency detection** to improve enterprise productivity and response time.
 
 ---
 
-
 ## 🎯 Project Objectives
-- Automatically classify emails into categories
-- Detect urgency levels for prioritization
-- Reduce manual workload
-- Improve enterprise response times
+- Automatically classify emails into predefined categories
+- Detect urgency levels (High / Medium / Low)
+- Reduce manual email handling workload
+- Improve enterprise response efficiency
 
 ---
 
 ## 🧠 Core Capabilities
 - Natural Language Processing (NLP)
-- Machine Learning & Transformer Models
-- Hybrid Rule + ML Decision Systems
-- Scalable enterprise-ready design
+- Machine Learning & Transformer-based models
+- Hybrid Rule-based + ML decision system
+- Scalable, enterprise-ready architecture
 
 ---
 
 ## 🏗️ System Architecture
-```text
 Raw Emails
-  ↓
+↓
 Preprocessing
-  ↓
+↓
 Email Categorization
-  ↓
+↓
 Urgency Detection
-  ↓
+↓
 Final Output
 (Category + Urgency)
-```
+
+yaml
+Copy code
 
 ---
 
 ## ✅ Implemented Milestones
 
 ### ✔ Milestone 1: Data Preparation & Preprocessing
-
-- Email cleaning pipeline (HTML, URLs, signatures removed)
-- Manual labeling support for category and urgency
-- Dataset merging and train/test/validation splits
+- Email cleaning (HTML tags, URLs, signatures removal)
+- Manual labeling for category and urgency
+- Dataset merging and train/validation/test split
 
 ---
 
@@ -73,7 +70,7 @@ Final Output
 #### Transformer-Based Model
 - Fine-tuned **DistilBERT** for multi-class email categorization
 
-**DistilBERT Test Results**
+**DistilBERT Performance**
 - Accuracy: **94.17%**
 - Macro F1-score: **94.53%**
 
@@ -81,14 +78,14 @@ Final Output
 
 ### ✔ Milestone 3: Urgency Detection Module
 
-A hybrid urgency detection system was implemented.
+A **hybrid urgency detection system** was implemented.
 
 #### Rule-Based Detection
-- Captures explicit urgency signals (e.g., *ASAP*, *system down*, *urgent*)
+- Identifies explicit urgency keywords (e.g., *urgent*, *ASAP*, *system down*)
 
 #### ML-Based Detection
-- Logistic Regression with TF-IDF features
-- Predicts: **High / Medium / Low**
+- Logistic Regression with TF-IDF
+- Predicts urgency levels: **High / Medium / Low**
 
 **Urgency Model Performance**
 - Accuracy: **95%**
@@ -96,52 +93,59 @@ A hybrid urgency detection system was implemented.
 - Macro F1-score: **0.91**
 
 #### Hybrid Decision Logic
-- Rule-based **HIGH** urgency overrides ML predictions
-- ML handles nuanced cases
+- Rule-based **HIGH urgency overrides** ML predictions
+- ML handles ambiguous and nuanced cases
 
 ---
 
 ## 📊 Results Summary
 
-| Task                  | Model                  | Accuracy | Macro F1 |
-|-----------------------|------------------------|----------|----------|
-| Email Categorization  | Logistic Regression    | ~92%     | ~92%     |
-| Email Categorization  | DistilBERT             | 94.17%   | 94.53%   |
-| Urgency Detection     | Hybrid (Rules + ML)    | 95%      | 0.91     |
+| Task                 | Model               | Accuracy | Macro F1 |
+|----------------------|---------------------|----------|----------|
+| Email Categorization | Logistic Regression | ~92%     | ~92%     |
+| Email Categorization | DistilBERT          | 94.17%   | 94.53%   |
+| Urgency Detection    | Hybrid (Rules + ML) | 95%      | 0.91     |
 
 ---
 
 ## 📁 Project Structure
-```text
-AI-Smart-Email-Classifier:
-  data:
-    raw:
-    interim:
-    processed:
-    splits:
-  src:
-    preprocessing:
-      cleaner.py
-      generate_cleaned_csv.py
-      label_categories.py
-      label_urgency.py
-      merge_datasets.py
-      split_dataset.py
-    models:
-      vectorizer.py
-      label_mapping.py
-      train_logistic_regression.py
-      train_naive_bayes.py
-      train_distilbert.py
-      evaluate_distilbert.py
-      train_urgency_model.py
-      urgency_rules.py
-      hybrid_urgency.py
-  models:
-    category:
-    urgency:
-  README.md
-  .gitignore
+```Text
+AI-Smart-Email-Classifier/
+│
+├── data/
+│ ├── raw/
+│ ├── interim/
+│ ├── processed/
+│ └── splits/
+│
+├── src/
+│ ├── preprocessing/
+│ │ ├── cleaner.py
+│ │ ├── generate_cleaned_csv.py
+│ │ ├── label_categories.py
+│ │ ├── label_urgency.py
+│ │ ├── merge_datasets.py
+│ │ └── split_dataset.py
+│ │
+│ └── models/
+│ ├── vectorizer.py
+│ ├── label_mapping.py
+│ ├── train_logistic_regression.py
+│ ├── train_naive_bayes.py
+│ ├── train_distilbert.py
+│ ├── evaluate_distilbert.py
+│ ├── train_urgency_model.py
+│ ├── urgency_rules.py
+│ └── hybrid_urgency.py
+│
+├── models/
+│ ├── category/
+│ └── urgency/
+│
+├── README.md
+├── LICENSE
+└── .gitignore
+
 ```
 
 > **Note:** Large datasets and trained models are excluded from version control.
@@ -150,50 +154,69 @@ AI-Smart-Email-Classifier:
 
 ## ▶️ How to Run
 
-
-# Preprocess emails
+### Preprocess Emails
 ```bash
 python src/preprocessing/generate_cleaned_csv.py
 ```
-# Split dataset
+### Split Dataset
 ```bash
+
 python src/preprocessing/split_dataset.py
 ```
-# Train category models
+### Train Category Models
 ```bash
+
 python src/models/train_logistic_regression.py
 python src/models/train_distilbert.py
 ```
-# Train urgency model
+Train Urgency Model
 ```bash
+
 python src/models/train_urgency_model.py
 ```
-## 🧪 Hybrid Urgency Logic
-- Rule-based **HIGH** urgency overrides ML prediction
+### 🧪 Hybrid Urgency Logic
+- Rule-based HIGH urgency overrides ML prediction
+
 - ML model handles remaining cases
+
 - Ensures high precision for critical emails
+ ---
 
----
-
-## 🚧 Excluded from Version Control
+### 🚧 Excluded from Version Control
 - Raw datasets
+
 - Processed datasets
+
 - Trained models
+
 - Virtual environments
-
 ---
 
-## 🚀 Future Enhancements
-- FastAPI backend
+### 🌐 Deployed Application URL
+- 🔗 Deployed URL: Add your deployed application link here (Mandatory for evaluation)
+---
+### 🚀 Future Enhancements
+- FastAPI backend integration
+
 - Streamlit dashboard
+
 - Docker-based deployment
+
 - Cloud hosting (AWS / Azure / GCP)
+---
+### 📄 License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
 ---
+### 🎯 Project Status
+✔ Data pipeline completed
 
-## 🎯 Project Status
-- ✔ Data pipeline completed
-- ✔ Email categorization completed
-- ✔ Urgency detection completed
-- ✔ Models evaluated and validated
-- ✔ Ready for integration & deployment
+✔ Email categorization completed
+
+✔ Urgency detection completed
+
+✔ Models evaluated and validated
+
+✔ Ready for integration & deployment
+
+---
