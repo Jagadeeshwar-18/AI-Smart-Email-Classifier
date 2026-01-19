@@ -19,3 +19,11 @@ data/
 __pycache__/
 *.pyc
 
+credentials.json
+token.pickle
+__pycache__/
+.venv/
+models/
+.streamlit/secrets.toml
+credentials.json
+token.json
